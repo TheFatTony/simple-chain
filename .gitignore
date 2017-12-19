@@ -1,0 +1,39 @@
+# IntelliJ
+.idea/
+*.iws
+*.iml
+*.ipr
+*.ips
+.idea/
+
+# Eclipse
+.settings/
+.metadata/
+.classpath
+.project
+
+#NetBeans
+nb-configuration.xml
+
+#Maven
+.mvn/
+
+# Generated
+target/
+javadoc/
+bin/
+log/
+classes/
+
+# Misc.
+.DS_Store
+*.swp
+*.swo
+
+# externalized configuration file for keys
+exchangeConfiguration.json
+
+
+src/main/webapp/vendor/
+node_modules/
+bower_components/
