@@ -37,3 +37,7 @@ exchangeConfiguration.json
 src/main/webapp/vendor/
 node_modules/
 bower_components/
+
+
+# Project
+*.schain

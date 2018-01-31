@@ -21,9 +21,6 @@ import java.util.stream.Collectors;
 public class NodeController {
 
 
-    public static int difficulty = 5;
-
-
     @Autowired
     private BlockChain blockChain;
 
@@ -40,8 +37,9 @@ public class NodeController {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity addBlock(@RequestParam(value = "data", required = true) String data) {
         Block newBlock = blockChain.generateNextBlock(data);
-        newBlock.mineBlock(difficulty);
-        System.out.println("newBlock.getNonce()" + newBlock.getNonce());
+        newBlock.mineBlock(BlockChain.difficulty);
+        blockChain.addBlock(newBlock);
+
         return ResponseEntity.ok("ok");
     }
 

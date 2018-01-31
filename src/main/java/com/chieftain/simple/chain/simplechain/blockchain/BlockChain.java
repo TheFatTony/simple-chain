@@ -8,6 +8,10 @@ import java.util.LinkedList;
 @Component
 public class BlockChain {
 
+    public static int difficulty = 2;
+
+    static String hashTarget = new String(new char[difficulty]).replace('\0', '0');
+
     LinkedList<Block> blockChain;
 
     public BlockChain() {
@@ -18,16 +22,20 @@ public class BlockChain {
     public Block generateNextBlock(String data) {
         Block previousBlock = blockChain.getLast();
         Block newBlock = new Block(previousBlock.getIndex() + 1, previousBlock.getHash(), data);
+        return newBlock;
+    }
+
+    public boolean addBlock(Block newBlock) {
         if (isBlockValid(newBlock)) {
             blockChain.add(newBlock);
-            return newBlock;
+            return true;
+        } else {
+            return false;
         }
-        // TODO exception of some kind
-        return null;
     }
 
 
-    private boolean isBlockValid(Block newBlock) {
+    public boolean isBlockValid(Block newBlock) {
         Block previousBlock = blockChain.getLast();
         if (previousBlock.getIndex() + 1 != newBlock.getIndex()) {
             System.out.println("Wrong index");
@@ -37,6 +45,9 @@ public class BlockChain {
             return false;
         } else if (!newBlock.calculateHash().equals(newBlock.getHash())) {
             System.out.println("Wrong Hash calculateHash");
+            return false;
+        } else if (!newBlock.getHash().substring(0, difficulty).equals(hashTarget)) {
+            System.out.println("This block hasn't been mined");
             return false;
         }
         return true;
