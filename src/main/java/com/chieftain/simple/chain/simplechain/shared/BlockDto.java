@@ -1,23 +1,19 @@
-package com.chieftain.simple.chain.simplechain;
+package com.chieftain.simple.chain.simplechain.shared;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
-public class Block {
+public class BlockDto {
+
 
     private int index;
     private String previousHash;
     private Date timestamp;
-    private Object data;
+    private String data;
     private String hash;
 
 
-    public Block(int index, String previousHash, Object data) {
-        this.index = index;
-        this.previousHash = previousHash;
-        this.timestamp = new Date();
-        this.data = data;
-        this.hash = HashUtils.calculateHash(index + previousHash + timestamp + data.toString());
+    public BlockDto() {
+
     }
 
     public int getIndex() {
@@ -44,11 +40,11 @@ public class Block {
         this.timestamp = timestamp;
     }
 
-    public Object getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(String data) {
         this.data = data;
     }
 
@@ -59,6 +55,4 @@ public class Block {
     public void setHash(String hash) {
         this.hash = hash;
     }
-
-
 }
